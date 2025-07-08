@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semáforo React</title>
+
+  <!-- Estilo original mantido -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .semaforo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background-color: #333;
+      border-radius: 20px;
+      padding: 20px;
+      width: 100px;
+    }
+
+    .luz {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #555;
+      transition: background-color 0.3s ease;
+    }
+
+    .luz.vermelho {
+      background-color: red;
+    }
+
+    .luz.amarelo {
+      background-color: yellow;
+    }
+
+    .luz.verde {
+      background-color: green;
+    }
+
+    .botoes {
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React e ReactDOM via CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- React App -->
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [corAtiva, setCorAtiva] = useState("");
+
+      return (
+        <div style={{ textAlign: "center" }}>
+          <h1>Semáforo React</h1>
+
+          <div className="semaforo">
+            <div className={"luz " + (corAtiva === "vermelho" ? "vermelho" : "")}></div>
+            <div className={"luz " + (corAtiva === "amarelo" ? "amarelo" : "")}></div>
+            <div className={"luz " + (corAtiva === "verde" ? "verde" : "")}></div>
+          </div>
+
+          <div className="botoes">
+            <button onClick={() => setCorAtiva("vermelho")}>Vermelho</button>
+            <button onClick={() => setCorAtiva("amarelo")}>Amarelo</button>
+            <button onClick={() => setCorAtiva("verde")}>Verde</button>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

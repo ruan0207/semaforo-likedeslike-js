@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contador de Likes React</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .like-counter-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .like-count {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .botoes-likes {
+      display: flex;
+      gap: 15px; /* Espaçamento entre os botões */
+    }
+
+    .botoes-likes button {
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      font-weight: bold;
+    }
+
+    .botoes-likes button:hover {
+      transform: translateY(-2px);
+    }
+
+    .botoes-likes button:active {
+      transform: translateY(0);
+    }
+
+    .botoes-likes .like-btn {
+      background-color: #4CAF50; /* Verde */
+      color: white;
+    }
+
+    .botoes-likes .like-btn:hover {
+      background-color: #45a049;
+    }
+
+    .botoes-likes .dislike-btn {
+      background-color: #f44336; /* Vermelho */
+      color: white;
+    }
+
+    .botoes-likes .dislike-btn:hover {
+      background-color: #da190b;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // Novo componente para a Tarefa 01: Contador de Likes
+    function LikeCounter() {
+      // Estado para armazenar o número de likes
+      // Inicializamos com 0 likes
+      const [likes, setLikes] = useState(0);
+
+      // Função para aumentar os likes
+      const handleLike = () => {
+        setLikes(likes + 1); // Incrementa o valor de likes em 1
+      };
+
+      // Função para diminuir os likes
+      const handleDislike = () => {
+        setLikes(likes - 1); // Decrementa o valor de likes em 1
+      };
+
+      return (
+        <div className="like-counter-container">
+          <h2>Contador de Likes</h2>
+          {/* Exibe o número atual de likes */}
+          <div className="like-count">{likes}</div>
+
+          <div className="botoes-likes">
+            {/* Botão LIKE: ao clicar, chama handleLike */}
+            <button className="like-btn" onClick={handleLike}>👍 LIKE</button>
+            {/* Botão DISLIKE: ao clicar, chama handleDislike */}
+            <button className="dislike-btn" onClick={handleDislike}>👎 DISLIKE</button>
+          </div>
+        </div>
+      );
+    }
+
+    // O componente principal App foi modificado para renderizar o LikeCounter
+    function App() {
+      return (
+        <div style={{ textAlign: "center" }}>
+          {/* Renderiza o novo componente LikeCounter */}
+          <LikeCounter />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
